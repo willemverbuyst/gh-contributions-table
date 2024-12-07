@@ -15,7 +15,7 @@ function weightedRandom(): number {
 export function generateContributions() {
   return Array.from({ length: 365 }).reduce(
     (acc: Record<string, number>, _, i) => {
-      const today = new Date("2024-01-01");
+      const today = new Date("2022-01-01");
       const tomorrow = new Date(today);
 
       tomorrow.setDate(today.getDate() + i);
