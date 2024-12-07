@@ -12,10 +12,10 @@ function weightedRandom(): number {
   return Math.floor(weighted * MAXIMUM_NUMBER_OF_CONTRIBUTIONS);
 }
 
-export function generateContributions() {
+export function generateContributions(year: number) {
   return Array.from({ length: 365 }).reduce(
     (acc: Record<string, number>, _, i) => {
-      const today = new Date("2022-01-01");
+      const today = new Date(`${year}-01-01`);
       const tomorrow = new Date(today);
 
       tomorrow.setDate(today.getDate() + i);
@@ -29,4 +29,16 @@ export function generateContributions() {
     },
     {}
   );
+}
+
+export function getContributionsForYears() {
+  const years = [2020, 2021, 2022, 2023, 2024];
+
+  const constributionsForYears = new Map();
+
+  years.forEach((y) => {
+    constributionsForYears.set(y, generateContributions(y));
+  });
+
+  return constributionsForYears;
 }

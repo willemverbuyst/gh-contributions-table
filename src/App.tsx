@@ -1,11 +1,19 @@
+import clsx from "clsx";
+import { useState } from "react";
 import { DataCells } from "./components/DataCells";
 import { DayCell } from "./components/DayCell";
 import { MonthCell } from "./components/MonthCell";
-import { generateContributions } from "./dummyData/contributions";
-import { dateMap } from "./utils/dateMap";
+import { getContributionsForYears } from "./dummyData/contributions";
+import { getDateMapsForYears } from "./utils/dateMap";
 
 export default function App() {
-  const contributions = generateContributions();
+  const [contributions] = useState(getContributionsForYears());
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [dateMapForYears] = useState(getDateMapsForYears());
+
+  function handleClick(selectedYear: number) {
+    setYear(selectedYear);
+  }
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -13,6 +21,53 @@ export default function App() {
         <h1 className="text-4xl">Github Contributions</h1>
       </header>
       <main>
+        <section className="flex gap-2 p-4 w-[150px]">
+          <button
+            className={clsx(
+              "py-1 px-4 hover:bg-gray-100 rounded text-gray-500",
+              year === 2020 && "bg-blue-600 text-white"
+            )}
+            onClick={() => handleClick(2020)}
+          >
+            2020
+          </button>
+          <button
+            className={clsx(
+              "py-1 px-4 hover:bg-gray-100 rounded text-gray-500",
+              year === 2021 && "bg-blue-600 text-white"
+            )}
+            onClick={() => handleClick(2021)}
+          >
+            2021
+          </button>
+          <button
+            className={clsx(
+              "py-1 px-4 hover:bg-gray-100 rounded text-gray-500",
+              year === 2022 && "bg-blue-600 text-white"
+            )}
+            onClick={() => handleClick(2022)}
+          >
+            2022
+          </button>
+          <button
+            className={clsx(
+              "py-1 px-4 hover:bg-gray-100 rounded text-gray-500",
+              year === 2023 && "bg-blue-600 text-white"
+            )}
+            onClick={() => handleClick(2023)}
+          >
+            2023
+          </button>
+          <button
+            className={clsx(
+              "py-1 px-4 hover:bg-gray-100 rounded text-gray-500",
+              year === 2024 && "bg-blue-600 text-white"
+            )}
+            onClick={() => handleClick(2024)}
+          >
+            2024
+          </button>
+        </section>
         <div className="border py-2 rounded">
           <table className="border-separate border-spacing-2">
             <thead>
@@ -37,50 +92,50 @@ export default function App() {
               <tr className="h-3 leading-none">
                 <DayCell day="Sun" hidden />
                 <DataCells
-                  contributions={contributions}
-                  dates={dateMap.get("Sunday") ?? []}
+                  contributions={contributions.get(year)}
+                  dates={dateMapForYears.get(year).get("Sunday") ?? []}
                 />
               </tr>
               <tr className="h-3 leading-none">
                 <DayCell day="Mon" />
                 <DataCells
-                  contributions={contributions}
-                  dates={dateMap.get("Monday") ?? []}
+                  contributions={contributions.get(year)}
+                  dates={dateMapForYears.get(year).get("Monday") ?? []}
                 />
               </tr>
               <tr className="h-3 leading-none">
                 <DayCell day="Tue" hidden />
                 <DataCells
-                  contributions={contributions}
-                  dates={dateMap.get("Tuesday") ?? []}
+                  contributions={contributions.get(year)}
+                  dates={dateMapForYears.get(year).get("Tuesday") ?? []}
                 />
               </tr>
               <tr className="h-3 leading-none">
                 <DayCell day="Wed" />
                 <DataCells
-                  contributions={contributions}
-                  dates={dateMap.get("Wednesday") ?? []}
+                  contributions={contributions.get(year)}
+                  dates={dateMapForYears.get(year).get("Wednesday") ?? []}
                 />
               </tr>
               <tr className="h-3 leading-none">
                 <DayCell day="Thu" hidden />
                 <DataCells
-                  contributions={contributions}
-                  dates={dateMap.get("Thursday") ?? []}
+                  contributions={contributions.get(year)}
+                  dates={dateMapForYears.get(year).get("Thursday") ?? []}
                 />
               </tr>
               <tr className="h-3 leading-none">
                 <DayCell day="Fri" />
                 <DataCells
-                  contributions={contributions}
-                  dates={dateMap.get("Friday") ?? []}
+                  contributions={contributions.get(year)}
+                  dates={dateMapForYears.get(year).get("Friday") ?? []}
                 />
               </tr>
               <tr className="h-3 leading-none">
                 <DayCell day="Sat" hidden />
                 <DataCells
-                  contributions={contributions}
-                  dates={dateMap.get("Saturday") ?? []}
+                  contributions={contributions.get(year)}
+                  dates={dateMapForYears.get(year).get("Saturday") ?? []}
                 />
               </tr>
             </tbody>
