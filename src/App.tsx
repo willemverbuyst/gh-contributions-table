@@ -12,7 +12,7 @@ export default function App() {
         <div className="border py-2 rounded">
           <table className="border-separate border-spacing-2">
             <thead>
-              <tr className="h-12">
+              <tr>
                 <td></td>
                 <MonthCell month="Dec" colSpan={5} />
                 <MonthCell month="Jan" colSpan={4} />

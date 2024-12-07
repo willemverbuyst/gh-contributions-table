@@ -7,5 +7,7 @@ export function DayCell({
   day: string;
   hidden?: boolean;
 }) {
-  return <td className={clsx("px-3", hidden && "invisible")}>{day}</td>;
+  return (
+    <td className={clsx("text-gray-700", hidden && "invisible")}>{day}</td>
+  );
 }

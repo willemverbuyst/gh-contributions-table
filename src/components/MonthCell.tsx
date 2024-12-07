@@ -6,7 +6,7 @@ export function MonthCell({
   colSpan: number;
 }) {
   return (
-    <td colSpan={colSpan} className="text-left">
+    <td colSpan={colSpan} className="text-gray-700 text-left">
       {month}
     </td>
   );
