@@ -1,11 +1,10 @@
-import { YEARS } from "../constants";
+import { MAXIMUM_NUMBER_OF_CONTRIBUTIONS, YEARS } from "../constants";
 
-const MAXIMUM_NUMBER_OF_CONTRIBUTIONS = 60;
+function getNumberOfDaysInYear(year: number) {
+  const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 
-export type Contribution = {
-  id: string;
-  date: Date;
-};
+  return isLeapYear ? 366 : 365;
+}
 
 function weightedRandom(): number {
   const random = Math.random();
@@ -15,7 +14,7 @@ function weightedRandom(): number {
 }
 
 export function generateContributions(year: number) {
-  return Array.from({ length: 365 }).reduce(
+  return Array.from({ length: getNumberOfDaysInYear(year) }).reduce(
     (acc: Record<string, number>, _, i) => {
       const today = new Date(`${year}-01-01`);
       const tomorrow = new Date(today);

@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Tooltip } from "react-tooltip";
-import { backgroundColor } from "../utils/dataLevel";
+import { BACKGROUND_COLOR } from "../constants";
 import { formatDate } from "../utils/dateHelpers";
 
 export function DataCell({
@@ -35,7 +35,7 @@ export function DataCell({
       data-level={dataLevel}
       className={clsx(
         "border border-gray-300 w-5 rounded",
-        backgroundColor[dataLevel]
+        BACKGROUND_COLOR[dataLevel]
       )}
     >
       <a
