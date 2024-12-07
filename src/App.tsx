@@ -2,17 +2,10 @@ import { DataCells } from "./components/DataCells";
 import { DayCell } from "./components/DayCell";
 import { MonthCell } from "./components/MonthCell";
 import { generateContributions } from "./dummyData/contributions";
+import { dateMap } from "./utils/dateMap";
 
 export default function App() {
   const contributions = generateContributions();
-
-  function getContributionsForDay(day: number) {
-    return Object.fromEntries(
-      Object.entries(contributions).filter(
-        ([k]) => new Date(k).getDay() === day
-      )
-    );
-  }
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -25,7 +18,6 @@ export default function App() {
             <thead>
               <tr>
                 <td></td>
-                <MonthCell month="Dec" colSpan={5} />
                 <MonthCell month="Jan" colSpan={4} />
                 <MonthCell month="Feb" colSpan={4} />
                 <MonthCell month="Mar" colSpan={5} />
@@ -37,37 +29,59 @@ export default function App() {
                 <MonthCell month="Sep" colSpan={4} />
                 <MonthCell month="Oct" colSpan={4} />
                 <MonthCell month="Nov" colSpan={4} />
+                <MonthCell month="Dec" colSpan={5} />
               </tr>
             </thead>
 
             <tbody>
               <tr className="h-3 leading-none">
                 <DayCell day="Sun" hidden />
-                <DataCells contributions={getContributionsForDay(0)} />
+                <DataCells
+                  contributions={contributions}
+                  dates={dateMap.get("Sunday") ?? []}
+                />
               </tr>
               <tr className="h-3 leading-none">
                 <DayCell day="Mon" />
-                <DataCells contributions={getContributionsForDay(1)} />
+                <DataCells
+                  contributions={contributions}
+                  dates={dateMap.get("Monday") ?? []}
+                />
               </tr>
               <tr className="h-3 leading-none">
                 <DayCell day="Tue" hidden />
-                <DataCells contributions={getContributionsForDay(2)} />
+                <DataCells
+                  contributions={contributions}
+                  dates={dateMap.get("Tuesday") ?? []}
+                />
               </tr>
               <tr className="h-3 leading-none">
                 <DayCell day="Wed" />
-                <DataCells contributions={getContributionsForDay(3)} />
+                <DataCells
+                  contributions={contributions}
+                  dates={dateMap.get("Wednesday") ?? []}
+                />
               </tr>
               <tr className="h-3 leading-none">
                 <DayCell day="Thu" hidden />
-                <DataCells contributions={getContributionsForDay(4)} />
+                <DataCells
+                  contributions={contributions}
+                  dates={dateMap.get("Thursday") ?? []}
+                />
               </tr>
               <tr className="h-3 leading-none">
                 <DayCell day="Fri" />
-                <DataCells contributions={getContributionsForDay(5)} />
+                <DataCells
+                  contributions={contributions}
+                  dates={dateMap.get("Friday") ?? []}
+                />
               </tr>
               <tr className="h-3 leading-none">
                 <DayCell day="Sat" hidden />
-                <DataCells contributions={getContributionsForDay(6)} />
+                <DataCells
+                  contributions={contributions}
+                  dates={dateMap.get("Saturday") ?? []}
+                />
               </tr>
             </tbody>
           </table>

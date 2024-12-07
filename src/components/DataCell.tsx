@@ -5,15 +5,30 @@ import { formatDate } from "../utils/dateHelpers";
 
 export function DataCell({
   dataIx,
-  dataLevel,
   date,
   contributions,
 }: {
   dataIx: number;
-  dataLevel: keyof typeof backgroundColor;
   date: string;
   contributions: number;
 }) {
+  function getDataLevel(v: number) {
+    switch (true) {
+      case v > 45:
+        return 4;
+      case v > 30:
+        return 3;
+      case v > 15:
+        return 2;
+      case v > 0:
+        return 1;
+      default:
+        return 0;
+    }
+  }
+
+  const dataLevel = getDataLevel(contributions);
+
   return (
     <td
       data-ix={dataIx}
