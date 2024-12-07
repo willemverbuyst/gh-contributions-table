@@ -17,7 +17,7 @@ export default function App() {
   return (
     <div className="w-full flex flex-col items-center">
       <header className="py-4">
-        <h1 className="text-4xl">Github Contributions Table</h1>
+        <h1 className="text-4xl">Github Contributions</h1>
       </header>
       <main>
         <div className="border py-2 rounded">

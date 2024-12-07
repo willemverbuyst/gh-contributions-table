@@ -1,3 +1,4 @@
+import { Fragment } from "react/jsx-runtime";
 import { DataCell } from "./DataCell";
 
 export function DataCells({
@@ -20,7 +21,14 @@ export function DataCells({
     }
   }
 
-  return Object.values(contributions).map((v, i) => (
-    <DataCell dataIx={i} dataLevel={getDataLevel(v)} />
+  return Object.entries(contributions).map(([k, v], i) => (
+    <Fragment key={k}>
+      <DataCell
+        dataIx={i}
+        dataLevel={getDataLevel(v)}
+        date={k}
+        contributions={v}
+      />
+    </Fragment>
   ));
 }

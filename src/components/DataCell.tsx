@@ -1,12 +1,18 @@
 import clsx from "clsx";
+import { Tooltip } from "react-tooltip";
 import { backgroundColor } from "../utils/dataLevel";
+import { formatDate } from "../utils/dateHelpers";
 
 export function DataCell({
   dataIx,
   dataLevel,
+  date,
+  contributions,
 }: {
   dataIx: number;
   dataLevel: keyof typeof backgroundColor;
+  date: string;
+  contributions: number;
 }) {
   return (
     <td
@@ -17,7 +23,16 @@ export function DataCell({
         backgroundColor[dataLevel]
       )}
     >
-      &nbsp;
+      <a
+        data-tooltip-id={date}
+        data-tooltip-content={`${
+          contributions ? contributions : "No"
+        } contributions on ${formatDate(date)}`}
+        className="flex"
+      >
+        &nbsp;
+      </a>
+      <Tooltip id={date} />
     </td>
   );
 }
