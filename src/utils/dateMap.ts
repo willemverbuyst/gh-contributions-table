@@ -1,3 +1,5 @@
+import { YEARS } from "../constants";
+
 export function getDayOfTheFirstInMonth(year: number, month: number) {
   const date = new Date(year, month, 1);
 
@@ -45,11 +47,9 @@ export function getDateMap(year: number) {
 }
 
 export function getDateMapsForYears() {
-  const years = [2020, 2021, 2022, 2023, 2024];
-
   const dateMapForYears = new Map();
 
-  years.forEach((y) => {
+  YEARS.forEach((y) => {
     dateMapForYears.set(y, getDateMap(y));
   });
 

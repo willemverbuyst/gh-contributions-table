@@ -1,3 +1,5 @@
+import { YEARS } from "../constants";
+
 const MAXIMUM_NUMBER_OF_CONTRIBUTIONS = 60;
 
 export type Contribution = {
@@ -32,11 +34,9 @@ export function generateContributions(year: number) {
 }
 
 export function getContributionsForYears() {
-  const years = [2020, 2021, 2022, 2023, 2024];
-
   const constributionsForYears = new Map();
 
-  years.forEach((y) => {
+  YEARS.forEach((y) => {
     constributionsForYears.set(y, generateContributions(y));
   });
 

@@ -1,49 +1,22 @@
 import { useState } from "react";
 import { DataCells } from "./components/DataCells";
 import { DayCell } from "./components/DayCell";
+import { Header } from "./components/Header";
 import { MonthCell } from "./components/MonthCell";
-import { SelectYearButton } from "./components/SelectYearButton";
+import { SelectYearSection } from "./components/SelectYearSection";
 import { getContributionsForYears } from "./dummyData/contributions";
 import { getDateMapsForYears } from "./utils/dateMap";
 
 export default function App() {
   const [contributions] = useState(getContributionsForYears());
-  const [year, setYear] = useState(new Date().getFullYear());
   const [dateMapForYears] = useState(getDateMapsForYears());
+  const [year, setYear] = useState(new Date().getFullYear());
 
   return (
     <div className="w-full flex flex-col items-center">
-      <header className="py-4">
-        <h1 className="text-4xl">Github Contributions</h1>
-      </header>
+      <Header />
       <main>
-        <section className="flex gap-2 p-4 w-[150px]">
-          <SelectYearButton
-            year={2020}
-            selectedYear={year}
-            setSelectedYear={setYear}
-          />
-          <SelectYearButton
-            year={2021}
-            selectedYear={year}
-            setSelectedYear={setYear}
-          />
-          <SelectYearButton
-            year={2022}
-            selectedYear={year}
-            setSelectedYear={setYear}
-          />
-          <SelectYearButton
-            year={2023}
-            selectedYear={year}
-            setSelectedYear={setYear}
-          />
-          <SelectYearButton
-            year={2024}
-            selectedYear={year}
-            setSelectedYear={setYear}
-          />
-        </section>
+        <SelectYearSection selectedYear={year} setSelectedYear={setYear} />
         <div className="border py-2 rounded">
           <table className="border-separate border-spacing-2">
             <thead>
