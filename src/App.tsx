@@ -1,8 +1,8 @@
-import clsx from "clsx";
 import { useState } from "react";
 import { DataCells } from "./components/DataCells";
 import { DayCell } from "./components/DayCell";
 import { MonthCell } from "./components/MonthCell";
+import { SelectYearButton } from "./components/SelectYearButton";
 import { getContributionsForYears } from "./dummyData/contributions";
 import { getDateMapsForYears } from "./utils/dateMap";
 
@@ -11,10 +11,6 @@ export default function App() {
   const [year, setYear] = useState(new Date().getFullYear());
   const [dateMapForYears] = useState(getDateMapsForYears());
 
-  function handleClick(selectedYear: number) {
-    setYear(selectedYear);
-  }
-
   return (
     <div className="w-full flex flex-col items-center">
       <header className="py-4">
@@ -22,56 +18,31 @@ export default function App() {
       </header>
       <main>
         <section className="flex gap-2 p-4 w-[150px]">
-          <button
-            className={clsx(
-              "py-1 px-4 text-gray-500",
-              year === 2020 && "bg-blue-600 text-white rounded",
-              year !== 2020 && "hover:bg-gray-200 rounded"
-            )}
-            onClick={() => handleClick(2020)}
-          >
-            2020
-          </button>
-          <button
-            className={clsx(
-              "py-1 px-4 text-gray-500",
-              year === 2021 && "bg-blue-600 text-white rounded",
-              year !== 2021 && "hover:bg-gray-200 rounded"
-            )}
-            onClick={() => handleClick(2021)}
-          >
-            2021
-          </button>
-          <button
-            className={clsx(
-              "py-1 px-4 text-gray-500",
-              year === 2022 && "bg-blue-600 text-white rounded",
-              year !== 2022 && "hover:bg-gray-200 rounded"
-            )}
-            onClick={() => handleClick(2022)}
-          >
-            2022
-          </button>
-          <button
-            className={clsx(
-              "py-1 px-4 text-gray-500",
-              year === 2023 && "bg-blue-600 text-white rounded",
-              year !== 2023 && "hover:bg-gray-200 rounded"
-            )}
-            onClick={() => handleClick(2023)}
-          >
-            2023
-          </button>
-          <button
-            className={clsx(
-              "py-1 px-4 text-gray-500",
-              year === 2024 && "bg-blue-600 text-white rounded",
-              year !== 2024 && "hover:bg-gray-200 rounded"
-            )}
-            onClick={() => handleClick(2024)}
-          >
-            2024
-          </button>
+          <SelectYearButton
+            year={2020}
+            selectedYear={year}
+            setSelectedYear={setYear}
+          />
+          <SelectYearButton
+            year={2021}
+            selectedYear={year}
+            setSelectedYear={setYear}
+          />
+          <SelectYearButton
+            year={2022}
+            selectedYear={year}
+            setSelectedYear={setYear}
+          />
+          <SelectYearButton
+            year={2023}
+            selectedYear={year}
+            setSelectedYear={setYear}
+          />
+          <SelectYearButton
+            year={2024}
+            selectedYear={year}
+            setSelectedYear={setYear}
+          />
         </section>
         <div className="border py-2 rounded">
           <table className="border-separate border-spacing-2">
