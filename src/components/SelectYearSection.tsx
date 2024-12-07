@@ -12,6 +12,7 @@ export function SelectYearSection({
     <section className="flex gap-2 p-4 w-[150px]">
       {YEARS.map((y) => (
         <SelectYearButton
+          key={y}
           year={y}
           selectedYear={selectedYear}
           setSelectedYear={setSelectedYear}
