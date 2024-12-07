@@ -16,7 +16,7 @@ export function DataCells({
         contributions={contributions[date]}
       />
     ) : (
-      <td>&nbsp;</td>
+      <td key={i}>&nbsp;</td>
     )
   );
 }

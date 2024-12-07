@@ -24,8 +24,9 @@ export default function App() {
         <section className="flex gap-2 p-4 w-[150px]">
           <button
             className={clsx(
-              "py-1 px-4 hover:bg-gray-100 rounded text-gray-500",
-              year === 2020 && "bg-blue-600 text-white"
+              "py-1 px-4 text-gray-500",
+              year === 2020 && "bg-blue-600 text-white rounded",
+              year !== 2020 && "hover:bg-gray-200 rounded"
             )}
             onClick={() => handleClick(2020)}
           >
@@ -33,8 +34,9 @@ export default function App() {
           </button>
           <button
             className={clsx(
-              "py-1 px-4 hover:bg-gray-100 rounded text-gray-500",
-              year === 2021 && "bg-blue-600 text-white"
+              "py-1 px-4 text-gray-500",
+              year === 2021 && "bg-blue-600 text-white rounded",
+              year !== 2021 && "hover:bg-gray-200 rounded"
             )}
             onClick={() => handleClick(2021)}
           >
@@ -42,8 +44,9 @@ export default function App() {
           </button>
           <button
             className={clsx(
-              "py-1 px-4 hover:bg-gray-100 rounded text-gray-500",
-              year === 2022 && "bg-blue-600 text-white"
+              "py-1 px-4 text-gray-500",
+              year === 2022 && "bg-blue-600 text-white rounded",
+              year !== 2022 && "hover:bg-gray-200 rounded"
             )}
             onClick={() => handleClick(2022)}
           >
@@ -51,8 +54,9 @@ export default function App() {
           </button>
           <button
             className={clsx(
-              "py-1 px-4 hover:bg-gray-100 rounded text-gray-500",
-              year === 2023 && "bg-blue-600 text-white"
+              "py-1 px-4 text-gray-500",
+              year === 2023 && "bg-blue-600 text-white rounded",
+              year !== 2023 && "hover:bg-gray-200 rounded"
             )}
             onClick={() => handleClick(2023)}
           >
@@ -60,8 +64,9 @@ export default function App() {
           </button>
           <button
             className={clsx(
-              "py-1 px-4 hover:bg-gray-100 rounded text-gray-500",
-              year === 2024 && "bg-blue-600 text-white"
+              "py-1 px-4 text-gray-500",
+              year === 2024 && "bg-blue-600 text-white rounded",
+              year !== 2024 && "hover:bg-gray-200 rounded"
             )}
             onClick={() => handleClick(2024)}
           >

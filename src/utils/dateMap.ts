@@ -5,39 +5,42 @@ export function getDayOfTheFirstInMonth(year: number, month: number) {
 }
 
 export function createDatesArray(day: number, year: number) {
-  const dayOfTheFirstInMonth = getDayOfTheFirstInMonth(2023, 0);
   const dates: (string | null)[] = [];
-  const d = new Date(`${year}-01-01`);
-  const startDate = new Date(d);
+  const firstDate = new Date(`${year}-01-01`);
+  const lastDate = new Date(`${year}-12-31`);
+  const dayOfTheFirstInMonth = firstDate.getDay();
 
-  startDate.setDate(d.getDate() - (dayOfTheFirstInMonth - day));
+  const startDate = new Date(firstDate);
 
-  Array.from({ length: 52 + (dayOfTheFirstInMonth === day ? 0 : 1) }).forEach(
-    (_, i) => {
-      const dd = new Date(startDate);
+  startDate.setDate(firstDate.getDate() - (dayOfTheFirstInMonth - day));
 
-      dd.setDate(startDate.getDate() + i * 7);
+  Array.from({ length: 53 }).forEach((_, i) => {
+    const dd = new Date(startDate);
 
-      if (dd.getTime() < d.getTime()) {
-        dates.push(null);
-      } else {
-        dates.push(dd.toISOString().split("T")[0]);
-      }
+    dd.setDate(startDate.getDate() + i * 7);
+
+    if (
+      dd.getTime() < firstDate.getTime() ||
+      dd.getTime() > lastDate.getTime()
+    ) {
+      dates.push(null);
+    } else {
+      dates.push(dd.toISOString().split("T")[0]);
     }
-  );
+  });
 
   return dates;
 }
 
 export function getDateMap(year: number) {
   return new Map([
+    ["Sunday", createDatesArray(0, year)],
     ["Monday", createDatesArray(1, year)],
     ["Tuesday", createDatesArray(2, year)],
     ["Wednesday", createDatesArray(3, year)],
     ["Thursday", createDatesArray(4, year)],
     ["Friday", createDatesArray(5, year)],
     ["Saturday", createDatesArray(6, year)],
-    ["Sunday", createDatesArray(0, year)],
   ]);
 }
 
