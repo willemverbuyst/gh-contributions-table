@@ -2,4 +2,6 @@
 
 ## What is this?
 
-A project where I try to rebuild the Github contributions table with html and css.
+A tryout project, rebuilding the Github contributions table with html and css with some dummy data.
+
+![screenshot](screenshot.png)
