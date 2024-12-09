@@ -11,7 +11,7 @@ export function SelectYearSection({
   const { years } = useContributions();
 
   return (
-    <section className="flex gap-2 p-4 w-[150px]">
+    <section className="flex gap-2 p-4 ml-auto">
       {years.map((y) => (
         <SelectYearButton
           key={y}

@@ -9,7 +9,7 @@ export default function App() {
   return (
     <div className="w-full flex flex-col items-center">
       <Header />
-      <main>
+      <main className="flex flex-col">
         <SelectYearSection
           selectedYear={selectedYear}
           setSelectedYear={setSelectedYear}
