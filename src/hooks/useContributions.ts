@@ -6,7 +6,7 @@ import { getDateString } from "../utils/dateHelpers";
 
 const contributions = getContributionsForYears();
 
-export function createDatesArray(day: number, year: number) {
+export function createDataArray(day: number, year: number) {
   const dates: (Data | null)[] = [];
   const firstDate = new Date(`${year}-01-01`);
   const lastDate = new Date(`${year}-12-31`);
@@ -40,31 +40,31 @@ export function createDatesArray(day: number, year: number) {
   return dates;
 }
 
-export function createDays(year: number) {
+export function createDaysMap(year: number) {
   const days: Map<number, (Data | null)[]> = new Map();
 
   Array.from({ length: 7 }).forEach((_, i) => {
-    days.set(i, createDatesArray(i, year));
+    days.set(i, createDataArray(i, year));
   });
 
   return days;
 }
 
-export function getDateMapsForYears() {
+export function createContributionsMap() {
   const contributionDates: Map<
     number,
     Map<number, (Data | null)[]>
   > = new Map();
 
   YEARS.forEach((y) => {
-    contributionDates.set(y, createDays(y));
+    contributionDates.set(y, createDaysMap(y));
   });
 
   return contributionDates;
 }
 
 export function useContributions() {
-  const [contributions] = useState(getDateMapsForYears());
+  const [contributions] = useState(createContributionsMap());
 
   return [contributions];
 }
