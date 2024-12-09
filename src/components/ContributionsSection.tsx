@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { DAYS_WITH_DAY_NUMBER, MONTHS_WITH_COLSPAN } from "../constants";
-import { getDateMapsForYears } from "../utils/dates";
+import { useContributions } from "../hooks/useContributions";
 import { DataCells } from "./DataCells";
 import { DayCell } from "./DayCell";
 import { MonthCell } from "./MonthCell";
@@ -10,7 +9,7 @@ export function ContributionsSection({
 }: {
   selectedYear: number;
 }) {
-  const [contributions] = useState(getDateMapsForYears());
+  const [contributions] = useContributions();
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { Data } from "../utils/dates";
+import { Data } from "../types/Data";
 import { DataCell } from "./DataCell";
 
 export function DataCells({

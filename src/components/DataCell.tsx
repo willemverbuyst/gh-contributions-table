@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import { Tooltip } from "react-tooltip";
 import { BACKGROUND_COLOR } from "../constants";
+import { Data } from "../types/Data";
 import { formatDate } from "../utils/dateHelpers";
-import { Data } from "../utils/dates";
 
 export function DataCell({ contribution }: { contribution: Data }) {
   function getDataLevel(v: number) {

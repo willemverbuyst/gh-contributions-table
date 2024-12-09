@@ -1,15 +1,10 @@
+import { useState } from "react";
 import { YEARS } from "../constants";
 import { getContributionsForYears } from "../dummyData/contributions";
-import { getDateString } from "./dateHelpers";
+import { Data } from "../types/Data";
+import { getDateString } from "../utils/dateHelpers";
 
 const contributions = getContributionsForYears();
-
-export type Data = {
-  date: string;
-  weekNumber: number;
-  year: number;
-  contributions: number | undefined;
-};
 
 export function createDatesArray(day: number, year: number) {
   const dates: (Data | null)[] = [];
@@ -66,4 +61,10 @@ export function getDateMapsForYears() {
   });
 
   return contributionDates;
+}
+
+export function useContributions() {
+  const [contributions] = useState(getDateMapsForYears());
+
+  return [contributions];
 }
