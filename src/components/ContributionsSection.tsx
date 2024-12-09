@@ -9,7 +9,7 @@ export function ContributionsSection({
 }: {
   selectedYear: number;
 }) {
-  const [contributions] = useContributions();
+  const { contributions } = useContributions();
 
   return (
     <>

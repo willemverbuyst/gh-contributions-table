@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { YEARS } from "../constants";
-import { getContributionsForYears } from "../dummyData/contributions";
+import { getDummyData } from "../dummyData/contributions";
 import { Data } from "../types/Data";
 import { getDateString } from "../utils/dateHelpers";
 
-const contributions = getContributionsForYears();
-
-export function createDataArray(day: number, year: number) {
+export function createDataArray(
+  day: number,
+  year: number,
+  events: Map<number, Map<string, number>>
+) {
   const dates: (Data | null)[] = [];
   const firstDate = new Date(`${year}-01-01`);
   const lastDate = new Date(`${year}-12-31`);
@@ -32,7 +33,7 @@ export function createDataArray(day: number, year: number) {
         date: dateString,
         weekNumber: i + 1,
         year,
-        contributions: contributions.get(year)?.get(dateString),
+        contributions: events.get(year)?.get(dateString),
       });
     }
   });
@@ -40,31 +41,40 @@ export function createDataArray(day: number, year: number) {
   return dates;
 }
 
-export function createDaysMap(year: number) {
+export function createDaysMap(
+  year: number,
+  events: Map<number, Map<string, number>>
+) {
   const days: Map<number, (Data | null)[]> = new Map();
 
   Array.from({ length: 7 }).forEach((_, i) => {
-    days.set(i, createDataArray(i, year));
+    days.set(i, createDataArray(i, year, events));
   });
 
   return days;
 }
 
-export function createContributionsMap() {
+export function createContributionsMap(
+  events: Map<number, Map<string, number>>,
+  years: number[]
+) {
   const contributionDates: Map<
     number,
     Map<number, (Data | null)[]>
   > = new Map();
 
-  YEARS.forEach((y) => {
-    contributionDates.set(y, createDaysMap(y));
+  years.forEach((y) => {
+    contributionDates.set(y, createDaysMap(y, events));
   });
 
   return contributionDates;
 }
 
 export function useContributions() {
-  const [contributions] = useState(createContributionsMap());
+  const dummyEvents = getDummyData();
+  const years = Array.from(dummyEvents.keys());
 
-  return [contributions];
+  const [contributions] = useState(createContributionsMap(dummyEvents, years));
+
+  return { contributions, years };
 }

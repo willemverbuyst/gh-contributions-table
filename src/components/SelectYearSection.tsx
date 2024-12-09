@@ -1,4 +1,4 @@
-import { YEARS } from "../constants";
+import { useContributions } from "../hooks/useContributions";
 import { SelectYearButton } from "./SelectYearButton";
 
 export function SelectYearSection({
@@ -8,9 +8,11 @@ export function SelectYearSection({
   selectedYear: number;
   setSelectedYear: (year: number) => void;
 }) {
+  const { years } = useContributions();
+
   return (
     <section className="flex gap-2 p-4 w-[150px]">
-      {YEARS.map((y) => (
+      {years.map((y) => (
         <SelectYearButton
           key={y}
           year={y}

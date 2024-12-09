@@ -1,5 +1,7 @@
-import { MAXIMUM_NUMBER_OF_CONTRIBUTIONS, YEARS } from "../constants";
 import { getDateString } from "../utils/dateHelpers";
+
+const YEARS = [2020, 2021, 2022, 2023, 2024];
+const MAXIMUM_NUMBER_OF_CONTRIBUTIONS = 60;
 
 function getNumberOfDaysInYear(year: number) {
   const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
@@ -32,7 +34,7 @@ export function generateContributions(year: number) {
   return contributions;
 }
 
-export function getContributionsForYears() {
+export function getDummyData() {
   const constributionsForYears: Map<number, Map<string, number>> = new Map();
 
   YEARS.forEach((y) => {
