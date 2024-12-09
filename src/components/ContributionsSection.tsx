@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { getContributionsForYears } from "../dummyData/contributions";
-import { getDateMapsForYears } from "../utils/dateMap";
+import { getDateMapsForYears } from "../utils/dates";
 import { DataCells } from "./DataCells";
 import { DayCell } from "./DayCell";
 import { MonthCell } from "./MonthCell";
@@ -10,8 +9,7 @@ export function ContributionsSection({
 }: {
   selectedYear: number;
 }) {
-  const [contributions] = useState(getContributionsForYears());
-  const [dateMapForYears] = useState(getDateMapsForYears());
+  const [contributions] = useState(getDateMapsForYears());
 
   return (
     <>
@@ -39,50 +37,43 @@ export function ContributionsSection({
             <tr className="h-3 leading-none">
               <DayCell day="Sun" hidden />
               <DataCells
-                contributions={contributions.get(selectedYear)}
-                dates={dateMapForYears.get(selectedYear).get("Sunday") ?? []}
+                contributions={contributions.get(selectedYear)?.get(0) ?? []}
               />
             </tr>
             <tr className="h-3 leading-none">
               <DayCell day="Mon" />
               <DataCells
-                contributions={contributions.get(selectedYear)}
-                dates={dateMapForYears.get(selectedYear).get("Monday") ?? []}
+                contributions={contributions.get(selectedYear)?.get(1) ?? []}
               />
             </tr>
             <tr className="h-3 leading-none">
               <DayCell day="Tue" hidden />
               <DataCells
-                contributions={contributions.get(selectedYear)}
-                dates={dateMapForYears.get(selectedYear).get("Tuesday") ?? []}
+                contributions={contributions.get(selectedYear)?.get(2) ?? []}
               />
             </tr>
             <tr className="h-3 leading-none">
               <DayCell day="Wed" />
               <DataCells
-                contributions={contributions.get(selectedYear)}
-                dates={dateMapForYears.get(selectedYear).get("Wednesday") ?? []}
+                contributions={contributions.get(selectedYear)?.get(3) ?? []}
               />
             </tr>
             <tr className="h-3 leading-none">
               <DayCell day="Thu" hidden />
               <DataCells
-                contributions={contributions.get(selectedYear)}
-                dates={dateMapForYears.get(selectedYear).get("Thursday") ?? []}
+                contributions={contributions.get(selectedYear)?.get(4) ?? []}
               />
             </tr>
             <tr className="h-3 leading-none">
               <DayCell day="Fri" />
               <DataCells
-                contributions={contributions.get(selectedYear)}
-                dates={dateMapForYears.get(selectedYear).get("Friday") ?? []}
+                contributions={contributions.get(selectedYear)?.get(5) ?? []}
               />
             </tr>
             <tr className="h-3 leading-none">
               <DayCell day="Sat" hidden />
               <DataCells
-                contributions={contributions.get(selectedYear)}
-                dates={dateMapForYears.get(selectedYear).get("Saturday") ?? []}
+                contributions={contributions.get(selectedYear)?.get(6) ?? []}
               />
             </tr>
           </tbody>

@@ -1,20 +1,14 @@
+import { Data } from "../utils/dates";
 import { DataCell } from "./DataCell";
 
 export function DataCells({
   contributions,
-  dates,
 }: {
-  contributions: { [k: string]: number };
-  dates: (string | null)[];
+  contributions: (Data | null)[];
 }) {
-  return dates.map((date, i) =>
-    date ? (
-      <DataCell
-        key={i}
-        dataIx={i}
-        date={date}
-        contributions={contributions[date]}
-      />
+  return contributions.map((contribution, i) =>
+    contribution ? (
+      <DataCell key={i} contribution={contribution} />
     ) : (
       <td key={i}>&nbsp;</td>
     )

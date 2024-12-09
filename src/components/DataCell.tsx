@@ -2,16 +2,9 @@ import clsx from "clsx";
 import { Tooltip } from "react-tooltip";
 import { BACKGROUND_COLOR } from "../constants";
 import { formatDate } from "../utils/dateHelpers";
+import { Data } from "../utils/dates";
 
-export function DataCell({
-  dataIx,
-  date,
-  contributions,
-}: {
-  dataIx: number;
-  date: string;
-  contributions: number;
-}) {
+export function DataCell({ contribution }: { contribution: Data }) {
   function getDataLevel(v: number) {
     switch (true) {
       case v > 45:
@@ -27,11 +20,12 @@ export function DataCell({
     }
   }
 
-  const dataLevel = getDataLevel(contributions);
+  const events = contribution.contributions ?? 0;
+  const dataLevel = getDataLevel(events);
 
   return (
     <td
-      data-ix={dataIx}
+      data-ix={contribution.weekNumber}
       data-level={dataLevel}
       className={clsx(
         "border border-gray-300 w-5 rounded",
@@ -39,15 +33,15 @@ export function DataCell({
       )}
     >
       <a
-        data-tooltip-id={date}
+        data-tooltip-id={contribution.date}
         data-tooltip-content={`${
-          contributions ? contributions : "No"
-        } contributions on ${formatDate(date)}`}
+          events ? events : "No"
+        } contributions on ${formatDate(contribution.date)}`}
         className="flex"
       >
         &nbsp;
       </a>
-      <Tooltip id={date} />
+      <Tooltip id={contribution.date} />
     </td>
   );
 }

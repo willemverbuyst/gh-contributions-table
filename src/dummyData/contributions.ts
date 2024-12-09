@@ -14,26 +14,25 @@ function weightedRandom(): number {
 }
 
 export function generateContributions(year: number) {
-  return Array.from({ length: getNumberOfDaysInYear(year) }).reduce(
-    (acc: Record<string, number>, _, i) => {
-      const today = new Date(`${year}-01-01`);
-      const tomorrow = new Date(today);
+  const contributions: Map<string, number> = new Map();
 
-      tomorrow.setDate(today.getDate() + i);
+  Array.from({ length: getNumberOfDaysInYear(year) }).forEach((_, i) => {
+    const today = new Date(`${year}-01-01`);
+    const tomorrow = new Date(today);
 
-      const randomNumber = weightedRandom();
-      const dataKey = tomorrow.toISOString().split("T")[0];
+    tomorrow.setDate(today.getDate() + i);
 
-      acc[dataKey] = randomNumber;
+    const randomNumber = weightedRandom();
+    const dataKey = tomorrow.toISOString().split("T")[0];
 
-      return acc;
-    },
-    {}
-  );
+    contributions.set(dataKey, randomNumber);
+  });
+
+  return contributions;
 }
 
 export function getContributionsForYears() {
-  const constributionsForYears = new Map();
+  const constributionsForYears: Map<number, Map<string, number>> = new Map();
 
   YEARS.forEach((y) => {
     constributionsForYears.set(y, generateContributions(y));
