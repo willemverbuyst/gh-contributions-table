@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { DAYS_WITH_DAY_NUMBER, MONTHS_WITH_COLSPAN } from "../constants";
 import { getDateMapsForYears } from "../utils/dates";
 import { DataCells } from "./DataCells";
 import { DayCell } from "./DayCell";
@@ -18,64 +19,23 @@ export function ContributionsSection({
           <thead>
             <tr>
               <td></td>
-              <MonthCell month="Jan" colSpan={4} />
-              <MonthCell month="Feb" colSpan={4} />
-              <MonthCell month="Mar" colSpan={5} />
-              <MonthCell month="Apr" colSpan={4} />
-              <MonthCell month="May" colSpan={4} />
-              <MonthCell month="Jun" colSpan={5} />
-              <MonthCell month="Jul" colSpan={4} />
-              <MonthCell month="Aug" colSpan={5} />
-              <MonthCell month="Sep" colSpan={4} />
-              <MonthCell month="Oct" colSpan={4} />
-              <MonthCell month="Nov" colSpan={4} />
-              <MonthCell month="Dec" colSpan={5} />
+              {MONTHS_WITH_COLSPAN.map(({ month, colSpan }) => (
+                <MonthCell key={month} month={month} colSpan={colSpan} />
+              ))}
             </tr>
           </thead>
 
           <tbody>
-            <tr className="h-3 leading-none">
-              <DayCell day="Sun" hidden />
-              <DataCells
-                contributions={contributions.get(selectedYear)?.get(0) ?? []}
-              />
-            </tr>
-            <tr className="h-3 leading-none">
-              <DayCell day="Mon" />
-              <DataCells
-                contributions={contributions.get(selectedYear)?.get(1) ?? []}
-              />
-            </tr>
-            <tr className="h-3 leading-none">
-              <DayCell day="Tue" hidden />
-              <DataCells
-                contributions={contributions.get(selectedYear)?.get(2) ?? []}
-              />
-            </tr>
-            <tr className="h-3 leading-none">
-              <DayCell day="Wed" />
-              <DataCells
-                contributions={contributions.get(selectedYear)?.get(3) ?? []}
-              />
-            </tr>
-            <tr className="h-3 leading-none">
-              <DayCell day="Thu" hidden />
-              <DataCells
-                contributions={contributions.get(selectedYear)?.get(4) ?? []}
-              />
-            </tr>
-            <tr className="h-3 leading-none">
-              <DayCell day="Fri" />
-              <DataCells
-                contributions={contributions.get(selectedYear)?.get(5) ?? []}
-              />
-            </tr>
-            <tr className="h-3 leading-none">
-              <DayCell day="Sat" hidden />
-              <DataCells
-                contributions={contributions.get(selectedYear)?.get(6) ?? []}
-              />
-            </tr>
+            {DAYS_WITH_DAY_NUMBER.map(({ day, dayNumber, display }) => (
+              <tr className="h-3 leading-none" key={day}>
+                <DayCell day={day} hidden={!display} />
+                <DataCells
+                  contributions={
+                    contributions.get(selectedYear)?.get(dayNumber) ?? []
+                  }
+                />
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
