@@ -1,4 +1,5 @@
 import { MAXIMUM_NUMBER_OF_CONTRIBUTIONS, YEARS } from "../constants";
+import { getDateString } from "../utils/dateHelpers";
 
 function getNumberOfDaysInYear(year: number) {
   const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
@@ -23,7 +24,7 @@ export function generateContributions(year: number) {
     tomorrow.setDate(today.getDate() + i);
 
     const randomNumber = weightedRandom();
-    const dataKey = tomorrow.toISOString().split("T")[0];
+    const dataKey = getDateString(tomorrow);
 
     contributions.set(dataKey, randomNumber);
   });

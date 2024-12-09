@@ -1,5 +1,6 @@
 import { YEARS } from "../constants";
 import { getContributionsForYears } from "../dummyData/contributions";
+import { getDateString } from "./dateHelpers";
 
 const contributions = getContributionsForYears();
 
@@ -31,7 +32,7 @@ export function createDatesArray(day: number, year: number) {
     ) {
       dates.push(null);
     } else {
-      const dateString = dd.toISOString().split("T")[0];
+      const dateString = getDateString(dd);
       dates.push({
         date: dateString,
         weekNumber: i + 1,
