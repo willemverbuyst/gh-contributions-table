@@ -35,11 +35,11 @@ export function generateContributions(year: number) {
 }
 
 export function getDummyData() {
-  const constributionsForYears: Map<number, Map<string, number>> = new Map();
+  const contributionsForYears: Map<number, Map<string, number>> = new Map();
 
   YEARS.forEach((y) => {
-    constributionsForYears.set(y, generateContributions(y));
+    contributionsForYears.set(y, generateContributions(y));
   });
 
-  return constributionsForYears;
+  return contributionsForYears;
 }
